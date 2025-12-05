@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>الحسابات المساحية - المهندس عمار يوسف</title>
+<link rel="stylesheet" href="index.css">
+<link rel="manifest" href="manifest.json">
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+      .then(() => console.log('Service Worker Registered'));
+  }
+</script>
+</head>
+<body>
+
+<!-- الواجهة الرئيسية -->
+<div id="mainInterface">
+  <h1>الحسابات المساحية</h1>
+  <h2>تصميم المهندس عمار يوسف</h2>
+  <button onclick="showProgram('p1')">حساب زاوية ومسافة (من إحداثيات)</button>
+  <button onclick="showProgram('p2')">حساب إحداثيات (من زاوية ومسافة)</button>
+  <button onclick="showProgram('p3')">التحقيق</button>
+</div>
+
+<!-- اختيار الوقفة -->
+<div id="stationSelect" class="hidden">
+  <h1>اختر الوقفة للعمل عليها</h1>
+  <button onclick="selectStation(1)">الوقفة الأولى</button>
+  <button onclick="selectStation(2)">الوقفة الثانية</button>
+  <button onclick="selectStation(3)">الوقفة الثالثة</button>
+  <button onclick="selectStation(4)">الوقفة الرابعة</button>
+</div>
+
+<!-- البرنامج 1 -->
+<div id="p1" class="hidden">
+  <div class="topButtons">
+    <button class="clearButton" onclick="clearStation('p1')">مسح كل البيانات</button>
+    <button class="backButton" onclick="backToMain()">العودة للواجهة الرئيسية</button>
+  </div>
+  <h1>حساب زاوية ومسافة (من إحداثيات)</h1>
+  <div>
+    <label>نقطة الوقوف X:</label><input type="number" id="p1_px" step="any"><br>
+    <label>نقطة الوقوف Y:</label><input type="number" id="p1_py" step="any"><br>
+    <label>نقطة الزيرو X:</label><input type="number" id="p1_zx" step="any"><br>
+    <label>نقطة الزيرو Y:</label><input type="number" id="p1_zy" step="any"><br>
+  </div>
+  <hr>
+  <div>
+    <input type="number" id="p1_inputX" placeholder="ادخل X"><br>
+    <input type="number" id="p1_inputY" placeholder="ادخل Y"><br>
+    <button onclick="p1_addPoint()">إضافة النقطة</button>
+  </div>
+  <table id="p1_resultTable">
+    <thead>
+      <tr><th>رقم النقطة</th><th>X (م)</th><th>Y (م)</th><th>المسافة (م)</th><th>الزاوية (غراد)</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<!-- البرنامج 2 -->
+<div id="p2" class="hidden">
+  <div class="topButtons">
+    <button class="clearButton" onclick="clearStation('p2')">مسح كل البيانات</button>
+    <button class="backButton" onclick="backToMain()">العودة للواجهة الرئيسية</button>
+  </div>
+  <h1>حساب الإحداثيات من زاوية ومسافة</h1>
+  <div>
+    <label>نقطة الوقوف X:</label><input type="number" id="p2_px" step="any"><br>
+    <label>نقطة الوقوف Y:</label><input type="number" id="p2_py" step="any"><br>
+    <label>نقطة الزيرو X:</label><input type="number" id="p2_zx" step="any"><br>
+    <label>نقطة الزيرو Y:</label><input type="number" id="p2_zy" step="any"><br>
+  </div>
+  <hr>
+  <div>
+    <input type="number" id="p2_inputAngle" placeholder="ادخل الزاوية"><br>
+    <input type="number" id="p2_inputDist" placeholder="ادخل المسافة"><br>
+    <button onclick="p2_addPoint()">إضافة النقطة</button>
+  </div>
+  <table id="p2_resultTable">
+    <thead>
+      <tr><th>رقم النقطة</th><th>X (م)</th><th>Y (م)</th><th>المسافة (م)</th><th>الزاوية (غراد)</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<!-- البرنامج 3 - التحقيق -->
+<div id="p3" class="hidden">
+  <div class="topButtons">
+    <button class="clearButton" onclick="clearStation('p3')">مسح كل البيانات</button>
+    <button class="backButton" onclick="backToMain()">العودة للواجهة الرئيسية</button>
+  </div>
+  <h1>التحقيق</h1>
+  <div>
+    <label>نقطة الوقوف X:</label><input type="number" id="p3_px" step="any"><br>
+    <label>نقطة الوقوف Y:</label><input type="number" id="p3_py" step="any"><br>
+  </div>
+  <hr>
+  <div>
+    <label>إضافة نقطة تحقيق جديدة:</label><br>
+    <input type="text" id="p3_newName" placeholder="اسم النقطة">
+    <input type="number" id="p3_newX" placeholder="X">
+    <input type="number" id="p3_newY" placeholder="Y">
+    <button onclick="p3_addNewPoint()">حفظ النقطة</button>
+  </div>
+  <hr>
+  <div>
+    <label>اختر نقاط التحقيق:</label><br>
+    <select id="p3_selectPoints" multiple style="width:200px; height:100px;"></select><br>
+    <button onclick="p3_addPoint()">إضافة نقطة تحقق</button>
+  </div>
+  <table id="p3_resultTable">
+    <thead>
+      <tr><th>اسم النقطة</th><th>X (م)</th><th>Y (م)</th><th>المسافة (م)</th><th>الزاوية (غراد)</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<script src="index.js"></script>
+</body>
+</html>
