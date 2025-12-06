@@ -1,21 +1,19 @@
 {
-  "name": "Ammanew1 App",
-  "short_name": "Ammanew1",
-  "description": "A simple web app created by Ammar.",
-  "start_url": "/Ammanew1/",
-  "scope": "/Ammanew1/",
+  "name": "الحسابات المساحية - المهندس عمار يوسف",
+  "short_name": "الحسابات المساحية",
+  "description": "تطبيق الحسابات المساحية للمهندس عمار يوسف",
+  "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#2196f3",
-  "orientation": "portrait-primary",
+  "background_color": "#f0f0f0",
+  "theme_color": "#3498db",
   "icons": [
     {
-      "src": "icons/icon-192.png",
+      "src": "icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "icons/icon-512.png",
+      "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
