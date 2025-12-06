@@ -1,20 +1,23 @@
-const CACHE_NAME = "app-cache-v1";
-const urlsToCache = [
-  "/index.html",
-  "/index.css",
-  "/index.js",
-  "/icon-192.png",
-  "/icon-512.png"
-];
-
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
-  );
-});
-
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request).then(response => response || fetch(event.request))
-  );
-});
+{
+  "name": "Ammanew1 App",
+  "short_name": "Ammanew1",
+  "description": "A simple web app created by Ammar.",
+  "start_url": "/Ammanew1/",
+  "scope": "/Ammanew1/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2196f3",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
